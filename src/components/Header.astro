@@ -1,0 +1,69 @@
+---
+import { layouts } from '../layouts';
+
+interface Props {
+  layout: string;
+}
+
+const { layout } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Keep the same content page (short / medium / long) when switching layouts.
+const pathAfterLayout = Astro.url.pathname.replace(`${base}/${layout}`, '');
+---
+
+<header class="header">
+  <span class="header__title">Rounded content box</span>
+  <nav class="header__nav" aria-label="Layout options">
+    {layouts.map((option) => (
+      <a
+        href={`${base}/${option.key}${pathAfterLayout}`}
+        aria-current={option.key === layout ? 'page' : undefined}
+        title={option.description}
+      >
+        {option.label}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+    height: var(--header-h);
+    padding: 0 1.5rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+  }
+
+  .header__title {
+    font-weight: 700;
+  }
+
+  .header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+
+  a {
+    display: block;
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+    color: inherit;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  a:hover {
+    background: var(--nav-hover);
+  }
+
+  a[aria-current='page'] {
+    background: var(--nav-active);
+    font-weight: 600;
+  }
+</style>

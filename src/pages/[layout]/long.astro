@@ -1,15 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
+import { layoutPaths } from '../../layouts';
+
+export const getStaticPaths = layoutPaths;
+
+const { layout } = Astro.params;
 
 const paragraphs = Array.from({ length: 24 }, (_, i) => i + 1);
 ---
 
-<Layout title="Long page">
+<Layout title="Long page" layout={layout}>
   <h1>Long page</h1>
   <p>
-    This page has a lot of content, so the rounded content box is much taller
-    than the viewport. Scroll down to see that the border and radius wrap the
-    full height, and that the sidebar stays in place while you scroll.
+    This page has a lot of content, far more than fits in the viewport. Scroll
+    inside the rounded box to see that the border and radius stay static while
+    the content moves.
   </p>
 
   {paragraphs.map((n) => (

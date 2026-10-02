@@ -1,14 +1,20 @@
 ---
+interface Props {
+  layout: string;
+}
+
+const { layout } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const prefix = `${base}/${layout}`;
 
 const links = [
-  { href: `${base}/`, label: 'Short page' },
-  { href: `${base}/medium/`, label: 'Medium page' },
-  { href: `${base}/long/`, label: 'Long page' },
+  { href: `${prefix}/`, label: 'Short page' },
+  { href: `${prefix}/medium/`, label: 'Medium page' },
+  { href: `${prefix}/long/`, label: 'Long page' },
 ];
 
-const current = Astro.url.pathname.replace(/\/$/, '') || '/';
-const isActive = (href: string) => (href.replace(/\/$/, '') || '/') === current;
+const current = Astro.url.pathname.replace(/\/$/, '');
+const isActive = (href: string) => href.replace(/\/$/, '') === current;
 ---
 
 <nav class="sidebar" aria-label="Main navigation">

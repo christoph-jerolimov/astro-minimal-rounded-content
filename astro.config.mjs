@@ -9,4 +9,8 @@ export default defineConfig({
   site: process.env.SITE_URL,
   base,
   output: 'static',
+  // Astro does not prefix redirect targets with `base`, so do it here.
+  redirects: {
+    '/': `${base.replace(/\/$/, '')}/box-scroll/`,
+  },
 });
