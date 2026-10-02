@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const paragraphs = Array.from({ length: 24 }, (_, i) => i + 1);
+---
+
+<Layout title="Long page">
+  <h1>Long page</h1>
+  <p>
+    This page has a lot of content, so the rounded content box is much taller
+    than the viewport. Scroll down to see that the border and radius wrap the
+    full height, and that the sidebar stays in place while you scroll.
+  </p>
+
+  {paragraphs.map((n) => (
+    <section>
+      <h2>Section {n}</h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+        velit esse cillum dolore eu fugiat nulla pariatur.
+      </p>
+    </section>
+  ))}
+</Layout>

@@ -1,0 +1,38 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const sections = [
+  {
+    title: 'Layout',
+    body: 'The page uses a two-column CSS grid: a fixed-width sidebar on the left and a flexible content area on the right.',
+  },
+  {
+    title: 'Rounded content',
+    body: 'The content area carries a 2px border and a large border-radius. Its height is driven purely by the content inside it.',
+  },
+  {
+    title: 'Sticky sidebar',
+    body: 'The sidebar is sticky, so it stays in view while you scroll through longer pages.',
+  },
+  {
+    title: 'Responsive',
+    body: 'Below 640px the grid collapses to a single column and the sidebar sits above the content.',
+  },
+];
+---
+
+<Layout title="Medium page">
+  <h1>Medium page</h1>
+  <p>
+    This page has a moderate amount of content. The content box is noticeably
+    taller than on the short page but still fits on most screens without
+    scrolling.
+  </p>
+
+  {sections.map((section) => (
+    <section>
+      <h2>{section.title}</h2>
+      <p>{section.body}</p>
+    </section>
+  ))}
+</Layout>
